@@ -1,0 +1,26 @@
+.csvUploadContainer {
+  border: 1px solid #60D7F8;
+  padding: 24px;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 800px;
+  width: calc(100% - 50px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.csvUploadContainer:hover {
+  background-color: #35798b;
+  transition: ease .25s all;
+  cursor: pointer;
+}
+.button {
+  background: #60D7F8;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  color: #282d33;
+  margin-top: 8px;
+}

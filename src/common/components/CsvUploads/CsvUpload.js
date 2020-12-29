@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Papa from 'papaparse'
 import Dropzone from 'react-dropzone'
 import moment from 'moment'
+import styles from './csv-uploads.module.css'
+import emailjs from 'emailjs-com'
 
 const CsvUpload = () => {
   const [state, setState] = useState({
@@ -58,31 +60,43 @@ const CsvUpload = () => {
     return result
   }
 
-  const sendEmails = () => {
+  const sendEmail = (email) => {
+    emailjs
+      .send('gmail', 'fast_start_reminder', email, 'user_MfAuIxXaTpn0egSTeJPQj')
+      .then(
+        (result) => {
+          console.log(result.text)
+        },
+        (error) => {
+          console.log(error.text)
+        }
+      )
+  }
+
+  const getEmails = () => {
     data.forEach((d) => {
       let emailObj = {
         name: d.name,
-        created_at: d.createddate,
+        loyal_customers: d.loyalcustomers,
         thirty_days_date: d.thirty_days_date.format('MMMM Do'),
         enroller_name: d.enrollername,
-        enroller_email: d.enrolleremail,
+        // enroller_email: d.enrolleremail,
+        enroller_email: 'iknowtennispro@yahoo.com',
       }
       console.log(emailObj)
-      // create email with emailObj
+      sendEmail(emailObj)
     })
   }
 
   return (
-    <div className='csv-upload'>
+    <div className={`csv-upload`}>
       <Dropzone onDropAccepted={parse} accept='.csv,.xls,.xlsx'>
         {({ getRootProps, getInputProps }) => {
           return (
-            <div {...getRootProps()}>
-              <div className='right-section'>
-                <span className='box-text'>Drag and Drop Files here or</span>
-                <button className='btn-sm btn-secondary'>Choose Files</button>
-                <input {...getInputProps()} />
-              </div>
+            <div {...getRootProps()} className={styles.csvUploadContainer}>
+              <div>Drag and Drop Files here or</div>
+              <button className={styles.button}>Choose Files</button>
+              <input {...getInputProps()} />
             </div>
           )
         }}
@@ -93,6 +107,7 @@ const CsvUpload = () => {
             <thead>
               <tr>
                 <th>Name</th>
+                <th>Loyal Customers</th>
                 <th>Created Date</th>
                 <th>30 Days Date</th>
                 <th>Enroller</th>
@@ -103,6 +118,7 @@ const CsvUpload = () => {
               {data.map((e, i) => (
                 <tr key={i}>
                   <td>{e.name}</td>
+                  <td>{e.loyalcustomers}</td>
                   <td>{moment(e.createddate).format('L')}</td>
                   <td>{moment(e.thirty_days_date).format('L')}</td>
                   <td>{e.enrollername}</td>
@@ -111,7 +127,13 @@ const CsvUpload = () => {
               ))}
             </tbody>
           </table>
-          <button onClick={sendEmails}>Send Emails</button>
+          <button
+            onClick={getEmails}
+            className={styles.button}
+            style={{ float: 'right' }}
+          >
+            Send Emails
+          </button>
         </>
       )}
     </div>
