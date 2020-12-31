@@ -1,16 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import emailjs from 'emailjs-com'
 import moment from 'moment'
 
-const CabsRow = ({ data }) => {
+const CabsRow = ({ data, devMode }) => {
   const [state, setState] = useState({
     sendingEmail: false,
     emailSent: false,
     error: false,
   })
   const { sendingEmail, emailSent, error } = state
-
-  const sendEmailTimeout = useRef()
 
   const sendEmail = (d) => {
     setState((prevState) => ({
@@ -22,7 +20,7 @@ const CabsRow = ({ data }) => {
       loyal_customers: d.loyalcustomers,
       thirty_days_date: d.thirty_days_date.format('MMMM Do'),
       enroller_name: d.enrollername.split(' ')[0],
-      enroller_email: d.enrolleremail,
+      enroller_email: devMode ? 'iknowtennispro@gmail.com' : d.enrolleremail,
     }
     emailjs
       .send(
@@ -50,12 +48,6 @@ const CabsRow = ({ data }) => {
         }
       )
   }
-
-  useEffect(() => {
-    return () => {
-      sendEmailTimeout.current = false
-    }
-  }, [])
 
   return (
     <tr style={{ height: '64px' }}>

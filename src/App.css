@@ -10,6 +10,10 @@ body {
   margin: auto;
 }
 
+.App.dev-mode button {
+  opacity: .5;
+}
+
 .App-link {
   color: #61dafb;
 }

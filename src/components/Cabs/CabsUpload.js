@@ -3,7 +3,7 @@ import moment from 'moment'
 import CabsTable from './CabsTable'
 import CsvUpload from '../CsvUploads/CsvUpload'
 
-const CabsUpload = () => {
+const CabsUpload = ({ devMode }) => {
   const [data, setData] = useState(null)
 
   const twoWeeksAgo = moment().subtract(2, 'weeks').startOf('day').format()
@@ -54,7 +54,7 @@ const CabsUpload = () => {
   return (
     <div className={`csv-upload`}>
       <CsvUpload callout={getCsvData} />
-      <CabsTable data={data} />
+      <CabsTable data={data} devMode={devMode} />
     </div>
   )
 }

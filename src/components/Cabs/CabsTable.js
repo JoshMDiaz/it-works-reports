@@ -1,7 +1,7 @@
 import React from 'react'
 import CabsRow from './CabsRow'
 
-const CabsTable = ({ data }) => {
+const CabsTable = ({ data, devMode }) => {
   return (
     <div className='cabs-table'>
       {data ? (
@@ -24,7 +24,7 @@ const CabsTable = ({ data }) => {
             </thead>
             <tbody>
               {data.map((e) => (
-                <CabsRow data={e} key={e.customerid} />
+                <CabsRow data={e} key={e.customerid} devMode={devMode} />
               ))}
             </tbody>
           </table>
