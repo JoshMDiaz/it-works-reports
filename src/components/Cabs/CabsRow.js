@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import emailjs from 'emailjs-com'
 import moment from 'moment'
-import styles from './csv-uploads.module.css'
 
-const CsvUploadRow = ({ data }) => {
+const CabsRow = ({ data }) => {
   const [state, setState] = useState({
     sendingEmail: false,
     emailSent: false,
@@ -69,9 +68,7 @@ const CsvUploadRow = ({ data }) => {
       <td>{data.enrolleremail}</td>
       <td>
         {!emailSent && !sendingEmail && (
-          <button onClick={() => sendEmail(data)} className={styles.button}>
-            Send Email
-          </button>
+          <button onClick={() => sendEmail(data)}>Send Email</button>
         )}
         {sendingEmail && <>Sending...</>}
         {!sendingEmail && error && (
@@ -79,7 +76,6 @@ const CsvUploadRow = ({ data }) => {
             <button
               style={{ backgroundColor: 'f86060' }}
               onClick={() => sendEmail(data)}
-              className={styles.button}
             >
               Try Again
             </button>
@@ -91,4 +87,4 @@ const CsvUploadRow = ({ data }) => {
   )
 }
 
-export default CsvUploadRow
+export default CabsRow

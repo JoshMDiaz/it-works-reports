@@ -1,11 +1,13 @@
-.App-header {
+body {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   color: #fff;
+  padding: 24px;
+}
+
+.App {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .App-link {
@@ -36,4 +38,20 @@ tr:not(.table-list-header):not(:last-child) {
 
 td {
   padding: 16px 8px;
+}
+
+/* Button */
+button {
+  background: #60D7F8;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  color: #282d33;
+}
+button:hover  {
+  background-color: #35798b;
+  transition: ease .25s all;
+  cursor: pointer;
+  color: #fff
 }
