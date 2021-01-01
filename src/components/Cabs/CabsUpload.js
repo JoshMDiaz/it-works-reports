@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import moment from 'moment'
 import CabsTable from './CabsTable'
-import CsvUpload from '../CsvUploads/CsvUpload'
+import CsvUpload from '../../common/CsvUploads/CsvUpload'
 
 const CabsUpload = ({ devMode }) => {
   const [data, setData] = useState(null)

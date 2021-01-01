@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import LeadershipTable from './LeadershipTable'
-import CsvUpload from '../CsvUploads/CsvUpload'
+import CsvUpload from '../../common/CsvUploads/CsvUpload'
 
 const LeadershipUpload = ({ devMode }) => {
   const [data, setData] = useState(null)

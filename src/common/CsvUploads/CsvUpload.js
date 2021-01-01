@@ -20,8 +20,11 @@ const CsvUpload = ({ callout }) => {
         {({ getRootProps, getInputProps }) => {
           return (
             <div {...getRootProps()} className={styles.csvUploadContainer}>
-              <div>Drag and Drop Files here or</div>
-              <button className={styles.dropFilesButton}>Choose Files</button>
+              <div>
+                Drag and Drop File or
+                <br />
+                Click here to Choose File
+              </div>
               <input {...getInputProps()} />
             </div>
           )

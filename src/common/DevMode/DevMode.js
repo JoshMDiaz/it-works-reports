@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './dev-mode.module.css'
 
 const DevMode = () => {
-  const [checked, setChecked] = useState(localStorage.getItem('devMode'))
+  const [checked, setChecked] = useState(!!localStorage.getItem('devMode'))
 
   const updateChecked = () => {
     if (checked) {
@@ -21,6 +21,7 @@ const DevMode = () => {
         name='devMode'
         checked={checked}
         onClick={updateChecked}
+        onChange={() => console.log('change')}
       />
       <label htmlFor='devMode'>Dev Mode</label>
     </div>
