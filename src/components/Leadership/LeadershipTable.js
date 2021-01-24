@@ -3,18 +3,18 @@ import emailjs from 'emailjs-com'
 import LeadershipRow from './LeadershipRow'
 
 const LeadershipTable = ({ data, devMode }) => {
-  // const [state, setState] = useState({
-  //   sendingEmail: false,
-  //   emailSent: false,
-  //   error: false,
-  // })
-  // const { sendingEmail, emailSent, error } = state
+  const [state, setState] = useState({
+    sendingEmail: false,
+    emailSent: false,
+    error: false,
+  })
+  const { sendingEmail, emailSent, error } = state
 
   const sendEmail = () => {
-    // setState((prevState) => ({
-    //   ...prevState,
-    //   sendingEmail: true,
-    // }))
+    setState((prevState) => ({
+      ...prevState,
+      sendingEmail: true,
+    }))
     let emailObj = {}
     data.forEach((d, index) => {
       emailObj[
@@ -31,19 +31,19 @@ const LeadershipTable = ({ data, devMode }) => {
       .then(
         (result) => {
           console.log(result.text)
-          // setState((prevState) => ({
-          //   ...prevState,
-          //   emailSent: true,
-          //   sendingEmail: false,
-          // }))
+          setState((prevState) => ({
+            ...prevState,
+            emailSent: true,
+            sendingEmail: false,
+          }))
         },
         (error) => {
           console.log(error.text)
-          // setState((prevState) => ({
-          //   ...prevState,
-          //   error: true,
-          //   sendingEmail: false,
-          // }))
+          setState((prevState) => ({
+            ...prevState,
+            error: true,
+            sendingEmail: false,
+          }))
         }
       )
   }
@@ -72,7 +72,11 @@ const LeadershipTable = ({ data, devMode }) => {
               ))}
             </tbody>
           </table>
-          <button onClick={() => sendEmail(data)}>Send Email</button>
+          {!emailSent && !sendingEmail && (
+            <button onClick={() => sendEmail(data)}>Send Email</button>
+          )}
+          {sendingEmail && !emailSent && <span>Sending...</span>}
+          {!sendingEmail && emailSent && <span>Email Sent!</span>}
         </>
       ) : null}
     </div>
