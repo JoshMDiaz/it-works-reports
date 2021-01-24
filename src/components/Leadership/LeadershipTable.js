@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import emailjs from 'emailjs-com'
 import LeadershipRow from './LeadershipRow'
 
@@ -77,6 +77,7 @@ const LeadershipTable = ({ data, devMode }) => {
           )}
           {sendingEmail && !emailSent && <span>Sending...</span>}
           {!sendingEmail && emailSent && <span>Email Sent!</span>}
+          {error && <button onClick={() => sendEmail(data)}>Try Again</button>}
         </>
       ) : null}
     </div>
